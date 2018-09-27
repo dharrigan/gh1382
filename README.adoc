@@ -1,0 +1,22 @@
+= README
+:author: David Harrigan
+:email: dharrigan@gmail.com 
+:docinfo: true
+:doctype: book
+:icons: font
+:numbered:
+:sectlinks:
+:sectnums:
+:setanchors:
+:source-highlighter: highlightjs
+:toc:
+:toclevels: 5
+
+== Instructions
+
+* Add a `gradle.properties` that defines a `nexusUrl` pointing to your repo
+** (or change the build.gradle.kts to successfully pull down dependencies)
+* Check out my forked `spring-cloud-stream` project and switch to the `GH-1382` branch
+* Publish the `spring-cloud-stream` project locally using `./mvnw install -DskipTests -Dgpg.skip`
+* Ensure you have kafka running locally
+* Fire up this project and try out the `bad-contract-create.sh` and `good-contract-create.sh` scripts

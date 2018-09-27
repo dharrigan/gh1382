@@ -1,0 +1,41 @@
+---
+
+spring:
+  application:
+    name: gh1382
+  cloud:
+    stream:
+      default:
+        group: ${spring.application.name}
+        contentType: application/json;charset=UTF-8
+        consumer: &defaultConsumerBindings
+          partitioned: true
+          concurrency: 1
+      bindings:
+        contractCreate:
+          destination: contract-create
+          consumer: *defaultConsumerBindings
+      kafka:
+        binder:
+          autoCreateTopics: true
+        bindings:
+          contractCreate:
+            consumer: *defaultConsumerBindings
+  main:
+    banner-mode: 'off'
+  jackson:
+    serialization:
+      fail_on_empty_beans: false
+
+logging:
+  pattern:
+    console: "[%boldWhite(%d)] --- [%boldBlue(%clr(%-5level))][%boldGreen(%-40.40logger{40})][%boldMagenta(%-4.4L)] - %msg%n%rEx"
+  level:
+    com:
+      dharrigan:
+        gh1382: DEBUG
+    org:
+      springframework:
+        web: INFO
+
+
